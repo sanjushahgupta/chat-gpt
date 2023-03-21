@@ -2,9 +2,9 @@ package com.digitalaya.chat.model.Message
 
 import com.google.gson.annotations.SerializedName
 
-data class Message (
+data class Message(
     @SerializedName("role")
-    val role: String ,
+    val role: String,
     @SerializedName("content")
     val content: String
-    )
+)
