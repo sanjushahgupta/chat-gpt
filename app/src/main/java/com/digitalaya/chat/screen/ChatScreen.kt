@@ -191,24 +191,7 @@ fun TopAppBarContent(navController: NavController, storeApiKey: String) {
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            Row(
-                modifier = Modifier
-                    .wrapContentWidth()
-                    .wrapContentHeight()
-                    .padding(start = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "ChatAI",
-                    fontSize = 12.sp,
-                    color = colorResource(id = R.color.LogiTint)
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.baseline_api_24),
-                    contentDescription = "",
-                )
-            }
+            ChatAILogo()
 
             Spacer(modifier = Modifier.weight(1f))
 
@@ -224,6 +207,28 @@ fun TopAppBarContent(navController: NavController, storeApiKey: String) {
                     }
             )
         }
+    }
+}
+
+@Composable
+fun ChatAILogo() {
+    Row(
+        modifier = Modifier
+            .wrapContentWidth()
+            .wrapContentHeight()
+            .padding(start = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "ChatAI",
+            fontSize = 12.sp,
+            color = colorResource(id = R.color.LogiTint)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.baseline_api_24),
+            contentDescription = "",
+        )
     }
 }
 

@@ -48,21 +48,23 @@ fun ChangeApiKey(navController: NavController, changeKey: String) {
     val dataStore = UserPreference(context)
     val focus = LocalFocusManager.current
     val interactionSource = MutableInteractionSource()
-   // Scaffold(topBar = { TopAppBar() })
-  //  {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(top = 15.dp)
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null
                 ) { focus.clearFocus() }, Alignment.TopCenter
         ) {
+
+            ChatAILogo()
             Column(
                 modifier = Modifier.padding(20.dp)
             ) {
 
-                //ApiKeyDiagram()
+
                 Spacer(modifier = Modifier.height(20.dp))
                 Card(elevation = 4.dp, modifier = Modifier.fillMaxWidth()) {
                     Column(
@@ -168,42 +170,4 @@ private fun DisclaimerText() {
         Text("Disclaimer: This application is not affiliated with OpenAI.", color = Color.LightGray)
     }
 
-}
-@Composable()
-fun TopAppBar() {
-    TopAppBar(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        backgroundColor = Color.DarkGray
-
-    ) {
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-        ) {
-            Row(
-                modifier = Modifier
-                    .wrapContentWidth()
-                    .wrapContentHeight()
-                    .padding(start = 20.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-
-                Text(
-                    text = "ChatAI",
-                    fontSize = 12.sp,
-                    color = colorResource(id = R.color.LogiTint)
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.baseline_api_24),
-                    contentDescription = "",
-                )
-            }
-
-        }
-    }
 }
