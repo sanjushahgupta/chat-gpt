@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ChatAI</string>
+    <string name="emptyField">Field is empty.</string>
+    <string name="chatBotAssistingMessage">Hello! How can I assist you today?</string>
+    <string name="addApiKeyMsg">Hello! It looks like you haven\'t added your OpenAI API key. You can add it by clicking on the key icon located at the top right corner of the screen.</string>
 </resources>

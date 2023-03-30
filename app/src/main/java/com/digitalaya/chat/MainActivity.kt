@@ -46,12 +46,9 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity(), LifecycleOwner {
 
-    private lateinit var viewModel: ChatViewModel
-
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
 
         setContent {
             MyApplicationTheme() {

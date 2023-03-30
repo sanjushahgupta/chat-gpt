@@ -1,6 +1,7 @@
 package com.digitalaya.chat.screen
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -22,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -29,40 +31,29 @@ import com.digitalaya.chat.R
 import com.digitalaya.chat.util.UserPreference
 import com.digitalaya.chat.viewModel.ChatViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
-@SuppressLint(
-    "UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation",
-    "CoroutineCreationDuringComposition"
-)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
+fun ChatScreen(navController: NavController, viewModel: ChatViewModel, context: Context) {
     val focus = LocalFocusManager.current
-    val scope = rememberCoroutineScope()
-    val context = LocalContext.current
     val dataStore = UserPreference(context)
     val globalApiKey = remember { mutableStateOf("SAMPLE_KEY") }
-
-    scope.launch {
-        dataStore.apiKeyStore.collect {
-            scope.launch {
-                globalApiKey.value = it.toString()
-                delay(700)
-            }
+    LaunchedEffect(Unit) {
+        dataStore.apiKeyStore.collect { apiKey ->
+            globalApiKey.value = apiKey
         }
     }
-
     Scaffold(
         topBar = {
             TopAppBarContent(navController, globalApiKey.value)
-        }) {
-
+        },
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-
             val enterQuestion = remember {
                 mutableStateOf("")
             }
@@ -131,7 +122,7 @@ private fun SendButtonClickedResponse(
 ) {
     if (buttonClick.value) {
         if (enterQuestion.value.isNullOrEmpty()) {
-            Toast.makeText(LocalContext.current, "Field is empty.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(LocalContext.current, stringResource(R.string.emptyField), Toast.LENGTH_SHORT).show()
         } else {
             viewModel.sendMessage(
                 LocalContext.current,
@@ -240,9 +231,9 @@ private fun ResponseTextView(viewModel: ChatViewModel, StoreApi: MutableState<St
             LazyColumn(fetchData)
         } else {
             val initialMessage = if (StoreApi.value == " ") {
-                "Hello! It looks like you haven't added your OpenAI API key. You can add it by clicking on the key icon located at the top right corner of the screen."
+                stringResource(R.string.addApiKeyMsg)
             } else {
-                "Hello! How can I assist you today?"
+                stringResource(R.string.chatBotAssistingMessage)
             }
 
             Row() {
