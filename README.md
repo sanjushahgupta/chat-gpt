@@ -12,7 +12,9 @@ An Android app to Chat with an AI using the OpenAI API key.
 ## OverView
 
 ### Screenshot
-![chatAI](https://github.com/sanjushahgupta/chat-gpt/assets/71315276/bc6d2abc-4534-4118-8b5c-996ea805ce21)
+<img width="229" alt="Screenshot 2023-06-24 at 17 39 28" src="https://github.com/sanjushahgupta/chat-gpt/assets/71315276/5c8c317a-595f-48d6-94b5-698211bd598b">
+
+
 
 ### Link
 Live App: [ChatAI](https://play.google.com/store/apps/details?id=com.digitalaya.chat)
